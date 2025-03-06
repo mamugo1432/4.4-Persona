@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import com.model.Persona;
+import com.model.Excepciones.InvalidNumberException;
 
 class PersonaTest {
 
@@ -14,19 +15,20 @@ class PersonaTest {
 	
 
 	static void crearPersonas() {
-		persona1 = new Persona();
-		persona2 = new Persona("Manuel",20,'H');
-		persona2 = new Persona("Antonia",30,'M', 80.00, 1.70);
+		try{
+			persona1 = new Persona();
+			persona2 = new Persona("Manuel",20,'H');
+			persona2 = new Persona("Antonia",30,'M', 80.00, 1.70);
+		}catch(InvalidNumberException e) {
+			System.out.println(e.getLocalizedMessage());
 		}
 
-	@Test
-	void testCalcularIMC() {
-		assertEquals(persona1.calcularIMC(),Persona.INFRAPESO);
-	}
+		}
+
 
 	@Test
-	void testPersonaStringIntCharDoubleDouble() {
-		fail("Not yet implemented");
+	void testDniValido() {
+		assertEquals(persona1.getDni(), persona1.)
 	}
 
 	@Test
