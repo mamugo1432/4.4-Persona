@@ -139,8 +139,12 @@ public class Persona {
     	return DNI;
     }
     
- 
+    public boolean esDniValido() {
+    	return DNI.length()==9 && Character.isUpperCase(DNI.charAt(DNI.length()-1)) && isNumeric(DNI.substring(0, 8));
+    }
 
+    
+   
     /**
 
      * Calcula el indice de masa corporal
