@@ -1,5 +1,7 @@
 package com.model;
 
+import com.model.Excepciones.InvalidNumberException;
+
 /**
 
  * Clase Persona
@@ -12,195 +14,54 @@ package com.model;
 
 public class Persona {
 
- 
-
-    //Constantes
-
-    /**
-
-     * Sexo por defecto
-
-     */
 
     private final static char SEXO_DEF = 'H';
-
- 
-
-    /**
-
-     * El peso de la persona esta por debajo del peso ideal
-
-     */
-
     public static final int INFRAPESO = -1;
-
- 
-
-    /**
-
-     * El peso de la persona esta en su peso ideal
-
-     */
-
     public static final int PESO_IDEAL = 0;
-
- 
-
-    /**
-
-     * El peso de la persona esta por encima del peso ideal
-
-     */
-
     public static final int SOBREPESO = 1;
 
- 
-
-    //Atributos
-
-    /**
-
-     * Nombre de la persona
-
-     */
-
     private String nombre;
-
- 
-
-    /**
-
-     * Edad de la persona
-
-     */
-
     private int edad;
-
- 
-
-    /**
-
-     * DNI de la persona, se genera al construir el objeto
-
-     */
-
     private String DNI;
-
- 
-
-    /**
-
-     * Sexo de la persona, H hombre M mujer
-
-     */
-
     private char sexo;
-
- 
-
-    /**
-
-     * Peso de la persona
-
-     */
-
     private double peso;
-
- 
-
-    /**
-
-     * Altura de la persona
-
-     */
-
     private double altura;
 
- 
 
-    //Contructores
-
-    /**
-
-     * Constructor por defecto
-
-     */
-
-    public Persona() {
+    public Persona() throws InvalidNumberException{
 
         this("", 0, SEXO_DEF, 0, 0);
-
     }
 
  
-
-    /**
-
-     * Constructor con 3 parametroe
-
-     *
-
-     * @param nombre de la persona
-
-     * @param edad de la persona
-
-     * @param sexo de la persona
-
-     */
-
-    public Persona(String nombre, int edad, char sexo) {
+    public Persona(String nombre, int edad, char sexo) throws InvalidNumberException {
 
         this(nombre, edad, sexo, 0, 0);
-
+        if(this.edad<0) {
+        	throw new InvalidNumberException();
+        }
     }
 
- 
 
-    /**
-
-     * Constructor con 5 parametros
-
-     *
-
-     * @param nombre de la persona
-
-     * @param edad de la persona
-
-     * @param sexo de la persona
-
-     * @param peso de la persona
-
-     * @param altura de la persona
-
-     */
-
-    public Persona(String nombre, int edad, char sexo, double peso, double altura) {
+    public Persona(String nombre, int edad, char sexo, double peso, double altura) throws InvalidNumberException {
 
         this.nombre = nombre;
-
         this.edad = edad;
-
         this.peso = peso;
-
         this.altura = altura;
-
         generarDni();
-
         this.sexo = sexo;
-
         comprobarSexo();
-
+        
+        if(this.edad<0 || this.peso<0 || this.altura<0) {
+        	throw new InvalidNumberException();
+        }
     }
 
- 
 
-    //Métodos privados
+   
 
     private void comprobarSexo() {
-
- 
-
-        //Si el sexo no es una H o una M, por defecto es H
 
         if (sexo != 'H' && sexo != 'M') {
 
@@ -216,23 +77,11 @@ public class Persona {
 
         final int divisor = 23;
 
- 
-
-        //Generamos un número de 8 digitos
-
         int numDNI = ((int) Math.floor(Math.random() * (100000000 - 10000000) + 10000000));
 
         int res = numDNI - (numDNI / divisor * divisor);
 
- 
-
-        //Calculamos la letra del DNI
-
         char letraDNI = generaLetraDNI(res);
-
- 
-
-        //Pasamos el DNI a String
 
         DNI = Integer.toString(numDNI) + letraDNI;
 
@@ -255,97 +104,41 @@ public class Persona {
     }
 
  
-
-    //Métodos publicos
-
-    /**
-
-     * Modifica el nombre de la persona
-
-     *
-
-     * @param nombre a cambiar
-
-     */
-
     public void setNombre(String nombre) {
 
         this.nombre = nombre;
-
     }
 
- 
-
-    /**
-
-     * Modifica la edad de la persona
-
-     *
-
-     * @param edad a cambiar
-
-     */
 
     public void setEdad(int edad) {
 
         this.edad = edad;
-
     }
 
- 
-
-    /**
-
-     * Modifica el sexo de la persona, comprueba que es correcto
-
-     *
-
-     * @param sexo a cambiar
-
-     */
 
     public void setSexo(char sexo) {
 
         this.sexo = sexo;
-
     }
 
  
-
-    /**
-
-     * Modifica el peso de la persona
-
-     *
-
-     * @param peso a cambiar
-
-     */
 
     public void setPeso(double peso) {
 
         this.peso = peso;
-
     }
 
- 
 
-    /**
-
-     * Modifica la altura de la persona
-
-     *
-
-     * @param altura a cambiar
-
-     */
 
     public void setAltura(double altura) {
 
         this.altura = altura;
-
     }
 
+    public String getDni() {
+    	return DNI;
+    }
+    
  
 
     /**
@@ -366,11 +159,9 @@ public class Persona {
 
     public int calcularIMC() {
 
-        //Calculamos el peso de la persona
 
         double pesoActual = peso / (Math.pow(altura, 2));
 
-        //Segun el peso, devuelve un codigo
 
         if (pesoActual >= 20 && pesoActual <= 25) {
 
@@ -389,17 +180,6 @@ public class Persona {
     }
 
  
-
-    /**
-
-     * Indica si la persona es mayor de edad
-
-     *
-
-     * @return true si es mayor de edad y false es menor de edad
-
-     */
-
     public boolean esMayorDeEdad() {
 
         boolean mayor = false;
@@ -414,17 +194,6 @@ public class Persona {
 
     }
 
- 
-
-    /**
-
-     * Devuelve informacion del objeto
-
-     *
-
-     * @return cadena con toda la informacion
-
-     */
 
     @Override
 
