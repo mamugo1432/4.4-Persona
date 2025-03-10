@@ -139,10 +139,21 @@ public class Persona {
     	return DNI;
     }
     
-    public boolean esDniValido() {
-    	return DNI.length()==9 && Character.isUpperCase(DNI.charAt(DNI.length()-1)) && isNumeric(DNI.substring(0, 8));
+    public boolean esDniValido(String dni) {
+    	return dni.length()==9 && Character.isUpperCase(dni.charAt(dni.length()-1)) && isNumeric(dni.substring(0, 8));
     }
 
+    private boolean isNumeric(String cadena) {
+    	
+    	boolean salida=false;
+    	
+    	for(int i=0; i<cadena.length() && !salida;i++) {
+    		if(!Character.isDigit(cadena.charAt(i))) {
+    			salida=true;
+    		}
+    	}
+    	return !salida;
+    }
     
    
     /**
