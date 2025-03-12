@@ -202,7 +202,6 @@ public class Persona {
         if (edad >= 18) {
 
             mayor = true;
-
         }
 
         return mayor;
