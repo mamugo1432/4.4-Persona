@@ -23,7 +23,7 @@ class TestPersona {
 			persona1 = new Persona();
 			persona2 = new Persona("Manuel",20,'H');
 			persona3 = new Persona("Antonia",30,'M', 20.00, 1.70);
-			persona4 = new Persona("Antonia",30,'M', 60.00, 1.70);
+			persona4 = new Persona("Antonia",15,'M', 60.00, 1.70);
 		}catch(InvalidNumberException e) {
 			System.out.println(e.getLocalizedMessage());
 		}
@@ -52,4 +52,13 @@ class TestPersona {
 		assertEquals(persona4.PESO_IDEAL, persona4.calcularIMC());
 		assertEquals(0, persona4.calcularIMC());
 	}
+	
+	@Test
+	void TestsMayorEdad() {
+		assertFalse(persona1.esMayorDeEdad());
+		assertTrue(persona2.esMayorDeEdad());
+		assertTrue(persona3.esMayorDeEdad());
+		assertFalse(persona4.esMayorDeEdad());
+	}
+	
 }
