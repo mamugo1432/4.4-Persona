@@ -61,4 +61,9 @@ class TestPersona {
 		assertFalse(persona4.esMayorDeEdad());
 	}
 	
+	@Test
+	void testToString() {
+		assertEquals("Información de la persona:\nNombre: Manuel\nSexo: hombre\nEdad: 20 años\nDNI: "+persona2.getDni()+"\nPeso: 0.0 kg\nAltura: 0.0 metros\n", persona2.toString());
+	}
+	
 }
