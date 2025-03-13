@@ -182,7 +182,7 @@ public class Persona {
 
             return PESO_IDEAL;
 
-        } else if (pesoActual < 20) {
+        } else if (pesoActual < 20 || Double.isNaN(pesoActual)) {
 
             return INFRAPESO;
 
