@@ -45,7 +45,9 @@ class TestPersona {
 	@Test
 	void setPesoTest() {
 		try {
-			persona5.setPeso(10);
+			persona3.setPeso(100);
+			persona4.setPeso(61.2);
+			persona5.setPeso(10.87);
 		} catch (InvalidPesoException e) {
 			e.printStackTrace();
 		}
@@ -59,8 +61,9 @@ class TestPersona {
 	@Test
 	void setAlturaTest() {
 		try {
-			
-			persona5.setAltura(1.71);
+			persona3.setAltura(1.71);
+			persona4.setAltura(1.72);
+			persona5.setAltura(1.69);
 		} catch (InvalidAlturaException e) {
 			e.printStackTrace();
 		}
@@ -72,6 +75,8 @@ class TestPersona {
 		assertTrue( persona1.esDniValido(persona1.getDni()));
 		assertFalse( persona2.esDniValido(persona2.getDni()+" "));
 		assertFalse(persona3.esDniValido(persona3.getDni()+"9"));
+		assertFalse(persona4.esDniValido(null));
+		assertTrue(persona5.esDniValido(persona5.getDni()+""));
 	}
 	
 	@Test
@@ -97,7 +102,7 @@ class TestPersona {
 	@Test
 	void testToString() {
 		assertEquals("Informacion de la persona:\nNombre: Manuel\nSexo: hombre\nEdad: 20 años\nDNI: "+persona2.getDni()+"\nPeso: 0.0 kg\nAltura: 0.0 metros\n", persona2.toString());
-		assertEquals("Informacion de la persona:\nNombre: Antonia\nSexo: mujer\nEdad: 30 años\nDNI: "+persona3.getDni()+"\nPeso: 90.0 kg\nAltura: 1.7 metros\n", persona3.toString());
+		assertEquals("Informacion de la persona:\nNombre: Antonia\nSexo: mujer\nEdad: 30 años\nDNI: "+persona3.getDni()+"\nPeso: 100.0 kg\nAltura: 1.7 metros\n", persona3.toString());
 	}
 	
 }
