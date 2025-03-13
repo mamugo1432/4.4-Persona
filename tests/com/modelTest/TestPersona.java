@@ -6,7 +6,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import com.model.Persona;
+import com.model.Excepciones.InvalidAlturaException;
 import com.model.Excepciones.InvalidNumberException;
+import com.model.Excepciones.InvalidPesoException;
 
 class TestPersona {
 
@@ -35,7 +37,36 @@ class TestPersona {
 	 void objetoLanzaExcepcion() {
 		assertThrows(InvalidNumberException.class, () -> new Persona("Miguel",-10,'H'));
 	}
+	@Test
+	void setPesoTestExcepcion() {
+		assertThrows(InvalidPesoException.class, () -> persona1.setPeso(0));
+	}
+	
+	@Test
+	void setPesoTest() {
+		try {
+			persona5.setPeso(10);
+		} catch (InvalidPesoException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	void setAlturaTestExcepcion() {
+		assertThrows(InvalidAlturaException.class, () -> persona1.setAltura(0));
+	}
+	
+	@Test
+	void setAlturaTest() {
+		try {
+			
+			persona5.setAltura(1.71);
+		} catch (InvalidAlturaException e) {
+			e.printStackTrace();
+		}
 
+	}
+	
 	@Test
 	void testDniValido() {
 		assertTrue( persona1.esDniValido(persona1.getDni()));
@@ -66,6 +97,7 @@ class TestPersona {
 	@Test
 	void testToString() {
 		assertEquals("Informacion de la persona:\nNombre: Manuel\nSexo: hombre\nEdad: 20 años\nDNI: "+persona2.getDni()+"\nPeso: 0.0 kg\nAltura: 0.0 metros\n", persona2.toString());
+		assertEquals("Informacion de la persona:\nNombre: Antonia\nSexo: mujer\nEdad: 30 años\nDNI: "+persona3.getDni()+"\nPeso: 90.0 kg\nAltura: 1.7 metros\n", persona3.toString());
 	}
 	
 }
