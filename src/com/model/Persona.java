@@ -1,6 +1,8 @@
 package com.model;
 
+import com.model.Excepciones.InvalidAlturaException;
 import com.model.Excepciones.InvalidNumberException;
+import com.model.Excepciones.InvalidPesoException;
 
 /**
 
@@ -123,15 +125,19 @@ public class Persona {
 
  
 
-    public void setPeso(double peso) {
-
+    public void setPeso(double peso) throws InvalidPesoException{
+    	if (peso <=0) {
+    		throw new InvalidPesoException();
+    	}
         this.peso = peso;
     }
 
 
 
-    public void setAltura(double altura) {
-
+    public void setAltura(double altura) throws InvalidAlturaException {
+    	if(altura<=0) {
+    		throw new InvalidAlturaException();
+    	}
         this.altura = altura;
     }
 
