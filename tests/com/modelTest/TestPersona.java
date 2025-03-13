@@ -22,7 +22,7 @@ class TestPersona {
 		try{
 			persona1 = new Persona();
 			persona2 = new Persona("Manuel",20,'H');
-			persona3 = new Persona("Antonia",30,'M', 20.00, 1.70);
+			persona3 = new Persona("Antonia",30,'M', 90.00, 1.70);
 			persona4 = new Persona("Antonia",15,'M', 60.00, 1.70);
 		}catch(InvalidNumberException e) {
 			System.out.println(e.getLocalizedMessage());
@@ -44,11 +44,11 @@ class TestPersona {
 	
 	@Test
 	void TestscalcularIMC() {
-		assertEquals(persona1.SOBREPESO, persona1.calcularIMC());
+		assertEquals(persona1.INFRAPESO, persona1.calcularIMC());
 		assertNotEquals(0, persona1.calcularIMC());
-		assertEquals(persona2.SOBREPESO, persona2.calcularIMC());
+		assertEquals(persona2.INFRAPESO, persona2.calcularIMC());
 		assertNotEquals(2, persona2.calcularIMC());
-		assertEquals(persona3.INFRAPESO, persona3.calcularIMC());
+		assertEquals(persona3.SOBREPESO, persona3.calcularIMC());
 		assertEquals(persona4.PESO_IDEAL, persona4.calcularIMC());
 		assertEquals(0, persona4.calcularIMC());
 	}
@@ -63,7 +63,7 @@ class TestPersona {
 	
 	@Test
 	void testToString() {
-		assertEquals("Información de la persona:\nNombre: Manuel\nSexo: hombre\nEdad: 20 años\nDNI: "+persona2.getDni()+"\nPeso: 0.0 kg\nAltura: 0.0 metros\n", persona2.toString());
+		assertEquals("Informacion de la persona:\nNombre: Manuel\nSexo: hombre\nEdad: 20 años\nDNI: "+persona2.getDni()+"\nPeso: 0.0 kg\nAltura: 0.0 metros\n", persona2.toString());
 	}
 	
 }
