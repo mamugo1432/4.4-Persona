@@ -14,7 +14,7 @@ class TestPersona {
 	private static Persona persona2;
 	private static Persona persona3;
 	private static Persona persona4;
-
+	private static Persona persona5;
 	
 	@BeforeAll
 	static void crearPersonas() {
@@ -24,6 +24,7 @@ class TestPersona {
 			persona2 = new Persona("Manuel",20,'H');
 			persona3 = new Persona("Antonia",30,'M', 90.00, 1.70);
 			persona4 = new Persona("Antonia",15,'M', 60.00, 1.70);
+			persona5 = new Persona("Paco",30,'H', 10.00, 1.70);
 		}catch(InvalidNumberException e) {
 			System.out.println(e.getLocalizedMessage());
 		}
@@ -44,13 +45,14 @@ class TestPersona {
 	
 	@Test
 	void TestscalcularIMC() {
-		assertEquals(persona1.INFRAPESO, persona1.calcularIMC());
+		assertEquals(null, persona1.calcularIMC());
 		assertNotEquals(0, persona1.calcularIMC());
-		assertEquals(persona2.INFRAPESO, persona2.calcularIMC());
+		assertEquals(null, persona2.calcularIMC());
 		assertNotEquals(2, persona2.calcularIMC());
 		assertEquals(persona3.SOBREPESO, persona3.calcularIMC());
 		assertEquals(persona4.PESO_IDEAL, persona4.calcularIMC());
 		assertEquals(0, persona4.calcularIMC());
+		assertEquals(persona5.INFRAPESO, persona5.calcularIMC());
 	}
 	
 	@Test
