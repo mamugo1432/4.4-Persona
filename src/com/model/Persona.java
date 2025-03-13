@@ -146,7 +146,7 @@ public class Persona {
     }
     
     public boolean esDniValido(String dni) {
-    	return dni.length()==9 && Character.isUpperCase(dni.charAt(dni.length()-1)) && isNumeric(dni.substring(0, 8));
+    	return dni != null && dni.length()==9 && Character.isUpperCase(dni.charAt(dni.length()-1)) && isNumeric(dni.substring(0, 8));
     }
 
     private boolean isNumeric(String cadena) {
