@@ -172,7 +172,7 @@ public class Persona {
 
      */
 
-    public int calcularIMC() {
+    public Integer calcularIMC() {
 
 
         double pesoActual = peso / (Math.pow(altura, 2));
@@ -182,12 +182,16 @@ public class Persona {
 
             return PESO_IDEAL;
 
-        } else if (pesoActual < 20 || Double.isNaN(pesoActual)) {
+        } else if (pesoActual < 20) {
 
             return INFRAPESO;
 
-        } else {
-
+        } else if (Double.isNaN(pesoActual)) {
+        
+        	return null;
+        	
+        }
+        else {
             return SOBREPESO;
 
         }
